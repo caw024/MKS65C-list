@@ -29,15 +29,22 @@ struct node * free_list(struct node *n){
   b.next = n;
   a.next = n;
 
-  while ((a.next)->next != NULL){
+  while (a.next->next != NULL){
     printf("removing value at current node: %d\n", a.next->i);
+    b.next = a.next->next;
     a.next = malloc(5*sizeof(size_t));
 
     free(a.next);
     printf("value at current node: %d\n", a.next->i);
+    a.next = b.next;
   }
-  
-  return b.next;     
+
+  printf("removing value at current node: %d\n", a.next->i);
+  a.next = malloc(5*sizeof(size_t));
+  free(a.next);
+  printf("value at current node: %d\n", a.next->i);
+
+  return b.next;
 }
 
 int main(){
